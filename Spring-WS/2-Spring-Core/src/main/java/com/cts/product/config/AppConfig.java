@@ -1,16 +1,13 @@
 package com.cts.product.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 
 @Configuration
 @ComponentScan("com.cts.product.service,com.cts.product.dao")
 public class AppConfig {
-	
 
 	public AppConfig() {
 		System.out.println(">>> AppConfig object created...");
