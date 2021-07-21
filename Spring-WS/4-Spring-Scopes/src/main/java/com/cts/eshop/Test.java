@@ -2,7 +2,6 @@ package com.cts.eshop;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import com.cts.eshop.config.AppConfig;
 import com.cts.eshop.dao.ProductDaoImpl;
 
