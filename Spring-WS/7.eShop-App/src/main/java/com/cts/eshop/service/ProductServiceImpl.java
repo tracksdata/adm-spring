@@ -3,6 +3,7 @@ package com.cts.eshop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.cts.eshop.dao.ProductDao;
@@ -12,6 +13,7 @@ import com.cts.eshop.model.Product;
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
+	@Qualifier(value = "productDaoImpl")
 	private ProductDao prodDao;
 
 	@Override
