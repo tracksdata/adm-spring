@@ -8,19 +8,23 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 @Configuration
 @ComponentScan("com.cts.eshop.service,com.cts.eshop.dao")
 @PropertySource(value = "application.properties")
+@EnableTransactionManagement
 public class AppConfig {
-	
-	
 
 	@Autowired
 	private Environment env;
 
-	// define data-source
+	// 1- define data-source
 	@Bean
 	public DataSource mysqlDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -29,6 +33,15 @@ public class AppConfig {
 		dataSource.setUsername(env.getProperty("db-user"));
 		dataSource.setPassword(env.getProperty("db-password"));
 		return dataSource;
+	}
+	
+	// 2- Transaction manager bean
+
+	@Bean(name = "platformTransactionManager")
+	public PlatformTransactionManager transactionManager() {
+		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(mysqlDataSource());
+		System.out.println(">>>>>> Transaction:: " + transactionManager.getDataSource());
+		return transactionManager;
 	}
 
 }

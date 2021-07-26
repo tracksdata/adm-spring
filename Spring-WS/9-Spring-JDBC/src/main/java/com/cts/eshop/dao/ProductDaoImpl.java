@@ -14,8 +14,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cts.eshop.model.Product;
@@ -113,7 +113,7 @@ public class ProductDaoImpl {
 	  */
 	 
 	 
-	 @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.READ_COMMITTED)
+	 @Transactional(isolation = Isolation.READ_UNCOMMITTED)
 	 public List<Product> findProductsByResultsetExtractor() {
 		return jdbcTemplate.query("select * from product", new ResultSetExtractorDemo());
 	 }
